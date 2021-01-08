@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="content">
+    <form id="updateSkill" action="{{ url_for('update_skill', id=skill.id) }}" method="POST"
+        class="row dir-col fl">
+        <div class="modal-content">
+            <h4>Edit a skill</h4>
+            <div class="input-field col s12">
+                <input name="name" type="text" class="validate" maxlength="255" value="{{ skill.name }}">
+                <label for="name">Name</label>
+            </div>
+            <div class="input-field col s12">
+                <input name="level" type="text" class="validate" maxlength="255" value="{{ skill.level }}">
+                <label for="level">Level</label>
+            </div>
+            <div class="input-field col s12">
+                <input name="description" type="text" class="validate" maxlength="255"
+                    value="{{ skill.description }}">
+                <label for="description">Description</label>
+            </div>
+            <div class="col s12 fl" style="justify-content: flex-end;">
+                <a class="waves-effect waves-green btn-flat primary white-text" href="{{ url_for('show_backoffice') }}"
+                    style="margin-right: 18px;">Get back</a>
+                <input class="waves-effect waves-green btn-flat green" type="submit" value="Update">
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block head %}
+        <title>Page not found - William Gaudfrin</title>
+{% endblock %}
+{% block body %}
+    <div class="content fl dir-col">
+        <h1 class="primary--text" style="margin: 0">404</h1>
+        <h1 class="primary--text" style="margin-bottom: 24px;">Page not found, sorry!</h1>
+        <a class="waves-effect blue-grey btn" href="{{ url_for('show_index') }}">Homepage</a>
+    </div>
+{% endblock %}

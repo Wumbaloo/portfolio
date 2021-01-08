@@ -1,0 +1,126 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="fl dir-col">
+    <div class="row">
+        <h1 class="primary--text">Welcome, {{ current_user.name }}.</h1>
+        <h6 style="margin-bottom: 18px;">Last login: {{ current_user.last_login }}</h6>
+        <form id="editPortfolio" action="{{ url_for('edit_portfolio') }}" method="POST" class="row dir-col fl">
+            <div class="input-field col s12">
+                <input name="name" type="text" value="{{ current_user.display_name }}" class="validate" maxlength="255">
+                <label for="name">Display name</label>
+            </div>
+            <div class="input-field col s12">
+                <input name="password" type="password" class="validate" maxlength="64">
+                <label for="password">Password</label>
+            </div>
+            <div class="input-field col s12">
+                <input name="email" type="text" value="{{ current_user.email }}" class="validate" maxlength="255">
+                <label for="email">E-mail</label>
+            </div>
+            <div class="input-field col s12">
+                <textarea id="description" class="materialize-textarea" maxlength="255">{{ current_user.description }}</textarea>
+                <label for="description">Description</label>
+            </div>
+            <div class="col s12 fl dir-col card">
+                <div class="col s12 fl" style="margin-bottom: 18px;">
+                    <div class="col s12 fl" style="justify-content: space-between;">
+                        <h5 style="margin: 0;">Projects</h5>
+                        <a class="btn-floating btn-large waves-effect waves-light red modal-trigger" href="#modal_add_project"><i class="material-icons">add</i></a>
+                    </div>
+                </div>
+                {% for project in current_user.projects %}
+                    <div class="card grey darken-1 col s12">
+                        <div class="card-content white-text">
+                            <span class="card-title">{{ project.name }}</span>
+                            <h6>Images:</h6>
+                            <p>{{ project.images }}</p>
+                            <h6>Small description:</h6>
+                            <p>{{ project.small_description }}</p>
+                            <h6>Description:</h6>
+                            <p>{{ project.description }}</p>
+                        </div>
+                        <div class="card-action fl" style="justify-content: space-around;">
+                            <a class="btn red" href="{{ url_for('delete_project', id=project.id) }}">Delete</a>
+                            <a class="btn" href="{{ url_for('edit_project', id=project.id) }}">Edit</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col s12 fl dir-col card">
+                <div class="col s12 fl" style="margin-bottom: 18px;">
+                    <div class="col s12 fl" style="justify-content: space-between;">
+                        <h5 style="margin: 0;">Skills</h5>
+                        <a class="btn-floating btn-large waves-effect waves-light red modal-trigger" href="#modal_add_skill"><i class="material-icons">add</i></a>
+                    </div>
+                </div>
+                {% for skill in current_user.skills %}
+                    <div class="card grey darken-1 col s12">
+                        <div class="card-content white-text">
+                            <span class="card-title">{{ skill.name }}</span>
+                            <h6>Level {{ skill.level }}</h6>
+                            <h6>Description:</h6>
+                            <p>{{ skill.description }}</p>
+                        </div>
+                        <div class="card-action fl" style="justify-content: space-around;">
+                            <a class="btn red" href="{{ url_for('delete_skill', id=skill.id) }}">Delete</a>
+                            <a class="btn" href="{{ url_for('edit_skill', id=skill.id) }}">Edit</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="fl">
+                <a class="waves-effect waves-green btn-flat primary white-text" href="{{ url_for('show_index') }}" style="margin-right: 18px;">Get back</a>
+                <input class="waves-effect blue-grey btn" type="submit" value="Submit" style="z-index: 0;">
+            </div>
+        </form>
+    </div>
+</div>
+<div id="modal_add_project" class="modal">
+    <form id="addProject" action="{{ url_for('add_project') }}" method="POST" class="row dir-col fl">
+        <div class="modal-content">
+            <h4>Add a project</h4>
+            <div class="input-field col s12">
+                <input name="name" type="text" class="validate" maxlength="255">
+                <label for="name">Name</label>
+            </div>
+            <div class="input-field col s12">
+                <input name="images" type="text" class="validate" maxlength="255">
+                <label for="images">Images</label>
+            </div>
+            <div class="input-field col s12">
+                <input name="small_description" type="text" class="validate" maxlength="255">
+                <label for="small_description">Small description</label>
+            </div>
+            <div class="input-field col s12">
+                <textarea name="description" class="materialize-textarea" maxlength="1024"></textarea>
+                <label for="description">Description</label>
+            </div>
+            <div class="col s12 fl" style="justify-content: flex-end;">
+                <input class="waves-effect waves-green btn-flat black" type="submit" value="Create">
+            </div>
+        </div>
+    </form>
+</div>
+<div id="modal_add_skill" class="modal">
+    <form id="addSkill" action="{{ url_for('add_skill') }}" method="POST" class="row dir-col fl">
+        <div class="modal-content">
+            <h4>Add a skill</h4>
+            <div class="input-field col s12">
+                <input name="name" type="text" class="validate" maxlength="255">
+                <label for="name">Name</label>
+            </div>
+            <div class="input-field col s12">
+                <input name="level" type="text" class="validate" maxlength="255">
+                <label for="level">Level</label>
+            </div>
+            <div class="input-field col s12">
+                <textarea name="description" class="materialize-textarea" maxlength="255"></textarea>
+                <label for="description">Description</label>
+            </div>
+            <div class="col s12 fl" style="justify-content: flex-end;">
+                <input class="waves-effect waves-green btn-flat black" type="submit" value="Create">
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

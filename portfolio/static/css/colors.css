@@ -2,6 +2,14 @@
     background-color: #03045E !important;
 }
 
+.primary-text {
+    color: #03045E !important;
+}
+
 .secondary {
     background-color: #0077B6 !important;
+}
+
+.secondary-text {
+    color: #0077B6 !important;
 }

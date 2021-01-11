@@ -1,11 +1,11 @@
-<div class="navbar-fixed">
-    <nav>
-        <div class="nav-wrapper primary">
-            <a href="#!" class="brand-logo center font-primary">{{ user.display_name }}</a>
-            <ul class="right hide-on-med-and-down s6">
-                <li><a href="sass.html">Sass</a></li>
-                <li><a href="badges.html">Components</a></li>
-            </ul>
+<header class="mdl-layout__header mdl-layout__header--scroll nav-wrapper">
+    <div class="mdl-layout__header-row centered-div">
+        <img src="{{ url_for('static', filename='assets/logo.png') }}" style="height: 48px;">
+        <div class="mdl-layout-spacer"></div>
+        <div class="mdl-navigation">
+            <a class="mdl-navigation__link" href="">Qui suis-je ?</a>
+            <a class="mdl-navigation__link" href="">Mes projets</a>
+            <a class="mdl-navigation__link mdl-button--primary contact-btn" href="">Contactez-moi</a>
         </div>
-    </nav>
-</div>
+    </div>
+</header>

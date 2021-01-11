@@ -1,9 +1,19 @@
 {% extends "layout.html" %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/timeline.css') }}">
+{% endblock %}
 {% block body %}
-    {% include "navbar.html" %}
     {% if not user %}
         Merci de me contacter directement à l'adresse : william.gaudfrin@epitech.eu
     {% else %}
-        {{ user.name }}
+        <div class="mdl-layout mdl-js-layout">
+            {% include "navbar.html" %}
+            <main class="mdl-layout__content">
+                <div class="page-content">
+                    {% include "sections/introduce.html" %}
+                    {% include "sections/myself.html" %}
+                </div>
+            </main>
+        </div>
     {% endif %}
 {% endblock %}

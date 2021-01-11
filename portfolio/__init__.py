@@ -33,6 +33,7 @@ for user in users:
 if not found:
     password = sha256("pwz9)!M7".encode('utf-8')).hexdigest()
     admin = User("admin", "William Gaudfrin", password, "william.gaudfrin@epitech.eu", True)
+    admin.description = 'Étudiant en 3ème année d\'informatique à <span style="color: #0069B2; font-weight: bold;">{EPITECH.}</span> Lille'
     db.session.add(admin)
     db.session.commit()
     app.logger.info("Admin account created.")

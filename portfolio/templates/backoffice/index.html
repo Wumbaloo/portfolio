@@ -5,24 +5,32 @@
         <h1 class="primary--text">Welcome, {{ current_user.name }}.</h1>
         <h6 style="margin-bottom: 18px;">Last login: {{ current_user.last_login }}</h6>
         <form id="editPortfolio" action="{{ url_for('edit_portfolio') }}" method="POST" class="row dir-col fl">
-            <div class="input-field col s12">
-                <input name="name" type="text" value="{{ current_user.display_name }}" class="validate" maxlength="255">
-                <label for="name">Display name</label>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input name="display_name" type="text" value="{{ current_user.display_name }}" class="mdl-textfield__input" maxlength="255">
+                <label for="display_name" class="mdl-textfield__label">Display name</label>
             </div>
-            <div class="input-field col s12">
-                <input name="password" type="password" class="validate" maxlength="64">
-                <label for="password">Password</label>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input name="password" type="password" class="mdl-textfield__input" maxlength="64">
+                <label for="password" class="mdl-textfield__label">Password</label>
             </div>
-            <div class="input-field col s12">
-                <input name="email" type="text" value="{{ current_user.email }}" class="validate" maxlength="255">
-                <label for="email">E-mail</label>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input name="email" type="text" value="{{ current_user.email }}" class="mdl-textfield__input" maxlength="255">
+                <label for="email" class="mdl-textfield__label">E-mail</label>
             </div>
-            <div class="input-field col s12">
-                <textarea id="description" class="materialize-textarea" maxlength="255">{{ current_user.description }}</textarea>
-                <label for="description">Description</label>
+            <div class="mdl-textfield mdl-js-textfield">
+                <textarea name="description" class="mdl-textfield__input" rows="3" maxlength="255">{{ current_user.description }}</textarea>
+                <label for="description" class="mdl-textfield__label">Description</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input name="title" type="text" value="{{ current_user.title }}" class="mdl-textfield__input" maxlength="255">
+                <label for="title" class="mdl-textfield__label">Title</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input name="subtitle" type="text" value="{{ current_user.subtitle }}" class="mdl-textfield__input" maxlength="255">
+                <label for="subtitle" class="mdl-textfield__label">Subtitle</label>
             </div>
             <div class="col s12 fl dir-col card">
-                <div class="col s12 fl" style="margin-bottom: 18px;">
+                <div class="col s12 fl" style="margin-top: 18px; margin-bottom: 18px;">
                     <div class="col s12 fl" style="justify-content: space-between;">
                         <h5 style="margin: 0;">Projects</h5>
                         <a class="btn-floating btn-large waves-effect waves-light red modal-trigger" href="#modal_add_project"><i class="material-icons">add</i></a>
@@ -47,7 +55,7 @@
                 {% endfor %}
             </div>
             <div class="col s12 fl dir-col card">
-                <div class="col s12 fl" style="margin-bottom: 18px;">
+                <div class="col s12 fl" style="margin-top: 18px; margin-bottom: 18px;">
                     <div class="col s12 fl" style="justify-content: space-between;">
                         <h5 style="margin: 0;">Skills</h5>
                         <a class="btn-floating btn-large waves-effect waves-light red modal-trigger" href="#modal_add_skill"><i class="material-icons">add</i></a>
@@ -68,6 +76,29 @@
                     </div>
                 {% endfor %}
             </div>
+            <div class="col s12 fl dir-col card">
+                <div class="col s12 fl" style="margin-top: 18px; margin-bottom: 18px;">
+                    <div class="col s12 fl" style="justify-content: space-between;">
+                        <h5 style="margin: 0;">Experiences</h5>
+                        <a class="btn-floating btn-large waves-effect waves-light red modal-trigger" href="#modal_add_experience"><i class="material-icons">add</i></a>
+                    </div>
+                </div>
+                {% for experience in current_user.experiences %}
+                    <div class="card grey darken-1 col s12">
+                        <div class="card-content white-text">
+                            <span class="card-title">{{ experience.name }}</span>
+                            <h6>Begin {{ experience.begin }}</h6>
+                            <h6>End {{ experience.end }}</h6>
+                            <h6>Description:</h6>
+                            <p>{{ experience.description }}</p>
+                        </div>
+                        <div class="card-action fl" style="justify-content: space-around;">
+                            <a class="btn red" href="{{ url_for('delete_experience', id=experience.id) }}">Delete</a>
+                            <a class="btn" href="{{ url_for('edit_experience', id=experience.id) }}">Edit</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
             <div class="fl">
                 <a class="waves-effect waves-green btn-flat primary white-text" href="{{ url_for('show_index') }}" style="margin-right: 18px;">Get back</a>
                 <input class="waves-effect blue-grey btn" type="submit" value="Submit" style="z-index: 0;">
@@ -79,21 +110,21 @@
     <form id="addProject" action="{{ url_for('add_project') }}" method="POST" class="row dir-col fl">
         <div class="modal-content">
             <h4>Add a project</h4>
-            <div class="input-field col s12">
-                <input name="name" type="text" class="validate" maxlength="255">
-                <label for="name">Name</label>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input name="name" type="text" class="mdl-textfield__input" maxlength="255">
+                <label for="name" class="mdl-textfield__label">Name</label>
             </div>
-            <div class="input-field col s12">
-                <input name="images" type="text" class="validate" maxlength="255">
-                <label for="images">Images</label>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input name="images" type="text" class="mdl-textfield__input" maxlength="255">
+                <label for="images" class="mdl-textfield__label">Images</label>
             </div>
-            <div class="input-field col s12">
-                <input name="small_description" type="text" class="validate" maxlength="255">
-                <label for="small_description">Small description</label>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input name="small_description" type="text" class="mdl-textfield__input" maxlength="255">
+                <label for="small_description" class="mdl-textfield__label">Small description</label>
             </div>
-            <div class="input-field col s12">
-                <textarea name="description" class="materialize-textarea" maxlength="1024"></textarea>
-                <label for="description">Description</label>
+            <div class="mdl-textfield mdl-js-textfield">
+                <textarea name="description" class="mdl-textfield__input" rows="3" maxlength="1024"></textarea>
+                <label for="description" class="mdl-textfield__label">Description</label>
             </div>
             <div class="col s12 fl" style="justify-content: flex-end;">
                 <input class="waves-effect waves-green btn-flat black" type="submit" value="Create">
@@ -105,17 +136,47 @@
     <form id="addSkill" action="{{ url_for('add_skill') }}" method="POST" class="row dir-col fl">
         <div class="modal-content">
             <h4>Add a skill</h4>
-            <div class="input-field col s12">
-                <input name="name" type="text" class="validate" maxlength="255">
-                <label for="name">Name</label>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input name="name" type="text" class="mdl-textfield__input" maxlength="255">
+                <label for="name" class="mdl-textfield__label">Name</label>
             </div>
-            <div class="input-field col s12">
-                <input name="level" type="text" class="validate" maxlength="255">
-                <label for="level">Level</label>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input name="level" type="text" class="mdl-textfield__input" maxlength="255">
+                <label for="level" class="mdl-textfield__label">Level</label>
             </div>
-            <div class="input-field col s12">
+            <div class="mdl-textfield mdl-js-textfield">
                 <textarea name="description" class="materialize-textarea" maxlength="255"></textarea>
-                <label for="description">Description</label>
+                <label for="description" class="mdl-textfield__label">Description</label>
+            </div>
+            <div class="col s12 fl" style="justify-content: flex-end;">
+                <input class="waves-effect waves-green btn-flat black" type="submit" value="Create">
+            </div>
+        </div>
+    </form>
+</div>
+<div id="modal_add_experience" class="modal">
+    <form id="addExperience" action="{{ url_for('add_experience') }}" method="POST" class="row dir-col fl">
+        <div class="modal-content">
+            <h4>Add an experience</h4>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input name="name" type="text" class="mdl-textfield__input" maxlength="255">
+                <label for="name" class="mdl-textfield__label">Name</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input name="company" type="text" class="mdl-textfield__input" maxlength="255">
+                <label for="company" class="mdl-textfield__label">Company</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input name="begin" type="text" class="mdl-textfield__input" maxlength="64">
+                <label for="begin" class="mdl-textfield__label">Begin</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input name="end" type="text" class="mdl-textfield__input" maxlength="64"">
+                <label for="end" class="mdl-textfield__label">End</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+                <textarea name="description" class="materialize-textarea" maxlength="255"></textarea>
+                <label for="description" class="mdl-textfield__label">Description</label>
             </div>
             <div class="col s12 fl" style="justify-content: flex-end;">
                 <input class="waves-effect waves-green btn-flat black" type="submit" value="Create">

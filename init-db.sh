@@ -9,8 +9,6 @@ if [ ! -d "migrations" ]; then
   flask db init
 fi
 
-ping -c1 database:5432
-
 flask db migrate
 flask db upgrade
 flask run

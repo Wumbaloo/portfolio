@@ -1,0 +1,22 @@
+<section class="myself-section">
+    <div class="about-me section">
+        <h4 style="font-weight: bolder;">Ravi de vous voir &#128513</h4>
+        <h6>{{ user.description|safe }}</h6>
+        <div class="experiences centered-div">
+            <div class="mdl-shadow--2dp experiences-wrapper">
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Mes expériences</h2>
+                </div>
+                <ul class="timeline">
+                    {% for experience in user.experiences %}
+                    <li class="event" data-date="{{ experience.begin }}/{{ experience.end }}">
+                        <h3>{{ experience.name }}</h3>
+                        <h3>{{ experience.company }}</h3>
+                        <p>{{ experience.description }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

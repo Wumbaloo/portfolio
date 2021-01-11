@@ -8,9 +8,11 @@ import time
 import requests
 import psycopg2
 
+from portfolio.useful import get_fields
 from portfolio.models import User
 from portfolio.projects import add_project, edit_project, delete_project
 from portfolio.skills import add_skill, edit_skill, delete_skill
+from portfolio.experiences import add_experience, edit_experience, delete_experience
 
 @app.errorhandler(404)
 def not_found(e):
@@ -64,16 +66,19 @@ def show_backoffice():
 @app.route('/admin/edit', methods=['POST'])
 @login_required
 def edit_portfolio():
-    success, data = get_fields(['display_name', 'password', 'email', 'description'], request.form)
+    success, data = get_fields(['display_name', 'email', 'title', 'subtitle', 'description'], request.form)
 
     if not success:
         flash(u"Missing fields: [" + data + "]", 'error')
         return redirect(url_for('show_backoffice'))
-    current_user.name = data['name']
-    current_user.password = sha256(data['password'].encode('utf-8')).hexdigest()
+    current_user.display_name = data['display_name']
+    if request.form['password']:
+        current_user.password = sha256(request.form['password'].encode('utf-8')).hexdigest()
     current_user.email = data['email']
     current_user.description = data['description']
+    current_user.title = data['title']
+    current_user.subtitle = data['subtitle']
     db.session.commit()
-    app.logger.info('User #' + current_user.id + ' updated.')
+    app.logger.info('User #' + str(current_user.id) + ' updated.')
     flash(U"Successfully updated.")
     return redirect(url_for('show_backoffice'))

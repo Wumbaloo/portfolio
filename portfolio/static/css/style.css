@@ -1,14 +1,15 @@
 @font-face {
-    font-family: Coolvetica;
-    src: url(../assets/coolvetica_rg.ttf);
+    font-family: "Roboto";
+    src: url("/static/assets/Roboto-Light.ttf");
 }
 
-font-primary {
-    font-family: Coolvetica, Arial, Helvetica, sans-serif;
+.font-primary {
+    /* font-family: "Roboto" !important; */
 }
 
 body {
-    font-size: 12px;
+    /* font-family: "Roboto" !important; */
+    font-size: 14px;
 }
 
 .hidden { display: none; }
@@ -111,4 +112,68 @@ label {
 @keyframes fadeout {
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
+}
+
+.nav-wrapper, .nav-wrapper .mdl-navigation__link {
+    background-color: transparent;
+    color: #141c3a;
+    font-size: 18px;
+}
+
+.centered-div {
+    padding: 60px 0;
+    max-width: 1044px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-btn {
+    height: 70%;
+    display: flex !important;
+    align-items: center;
+    border: 2px solid blue;
+    border-radius: 300px;
+    border-width: 2px;
+    transition: all .2s ease-in-out;
+    color: #7510F7 !important;
+}
+
+.contact-btn:hover {
+    background-color: #7510F7;
+    color: white !important;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+section, .section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.introduce-section {
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+}
+
+.myself-section {
+    color: white;
+}
+
+.myself-section .about-me {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(#7510F7 0%, #7510F7 22rem, white 22rem, white 100%);
+}
+
+.myself-section .experiences-wrapper {
+    background-color: white;
+    border-radius: 15px;
 }

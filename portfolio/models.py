@@ -14,6 +14,12 @@ rel_user_skill = db.Table(
     db.Column('skill_id', db.Integer, db.ForeignKey('skill.id', ondelete="CASCADE"))
 )
 
+rel_user_experience = db.Table(
+    'user_experience',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id', ondelete="CASCADE")),
+    db.Column('experience_id', db.Integer, db.ForeignKey('experience.id', ondelete="CASCADE"))
+)
+
 
 class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -47,6 +53,25 @@ class Skill(db.Model):
         return f"<Skill {self.name}>"
 
 
+class Experience(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255))
+    company = db.Column(db.String(255))
+    description = db.Column(db.String(255))
+    begin = db.Column(db.String(64))
+    end = db.Column(db.String(64))
+
+    def __init__(self, name, company, description, begin, end):
+        self.name = name
+        self.company = company
+        self.description = description
+        self.begin = begin
+        self.end = end
+
+    def __repr__(self):
+        return f"<Experience {self.name}>"
+
+
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
@@ -56,8 +81,11 @@ class User(UserMixin, db.Model):
     last_login = db.Column(db.DateTime)
     is_admin = db.Column(db.Boolean, default=False)
     description = db.Column(db.String(1024), default="No description about this user.")
+    title = db.Column(db.String(255))
+    subtitle = db.Column(db.String(255))
     projects = db.relationship('Project', secondary=rel_user_project, backref="users")
     skills = db.relationship('Skill', secondary=rel_user_skill, backref="users")
+    experiences = db.relationship('Experience', secondary=rel_user_experience, backref="users")
 
     def __init__(self, name, display_name, password, email, is_admin):
         self.name = name
@@ -83,6 +111,14 @@ class User(UserMixin, db.Model):
             return True
         else:
             self.skills.remove(skill)
+            return False
+
+    def add_experience(self, experience):
+        if experience not in self.experiences:
+            self.experiences.append(experience)
+            return True
+        else:
+            self.experiences.remove(experience)
             return False
 
     @login.user_loader

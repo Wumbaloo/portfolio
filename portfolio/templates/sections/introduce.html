@@ -1,0 +1,6 @@
+<section class="introduce-section">
+    <h2 style="font-weight: bolder;">{{ user.title|safe }}</h2>
+    <h4>{{ user.subtitle|safe }}</h4>
+    <img src="{{ url_for('static', filename='assets/avatar.svg') }}" style="height: 17rem;">
+    <h1>{{ user.display_name|safe }}</h1>
+</section>

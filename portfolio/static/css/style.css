@@ -159,9 +159,10 @@ section, .section {
 .introduce-section {
     padding-top: 10rem;
     padding-bottom: 10rem;
+    text-align: center;
 }
 
-.myself-section {
+.myself-section, .skills-section {
     color: white;
 }
 
@@ -170,10 +171,60 @@ section, .section {
     padding-bottom: 5rem;
     height: 100%;
     width: 100%;
+    text-align: center;
     background: linear-gradient(#7510F7 0%, #7510F7 22rem, white 22rem, white 100%);
 }
 
 .myself-section .experiences-wrapper {
     background-color: white;
     border-radius: 15px;
+}
+
+.myself-section .experiences {
+    padding-bottom: 30px;
+}
+
+.skills-section {
+    background: #7510F7;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    text-align: center;
+}
+
+.skills {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.skill-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 50px;
+    max-width: 50vw;
+}
+
+@media only screen and (max-width: 768px) {
+    .skill-box {
+        max-width: 100%;
+    }
+}
+
+.skill-img {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    background: linear-gradient(90deg, var(--secondary-color) 0%, var(--secondary-color) 50%, white 51%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.skill-img img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
 }

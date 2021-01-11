@@ -41,12 +41,12 @@ class Project(db.Model):
 class Skill(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
-    level = db.Column(db.String(255))
+    icon = db.Column(db.String(255))
     description = db.Column(db.String(255))
 
-    def __init__(self, name, level, description):
+    def __init__(self, name, icon, description):
         self.name = name
-        self.level = level
+        self.icon = icon
         self.description = description
 
     def __repr__(self):

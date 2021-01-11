@@ -65,7 +65,7 @@
                     <div class="card grey darken-1 col s12">
                         <div class="card-content white-text">
                             <span class="card-title">{{ skill.name }}</span>
-                            <h6>Level {{ skill.level }}</h6>
+                            <h6>Icon {{ skill.icon }}</h6>
                             <h6>Description:</h6>
                             <p>{{ skill.description }}</p>
                         </div>
@@ -141,8 +141,8 @@
                 <label for="name" class="mdl-textfield__label">Name</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield">
-                <input name="level" type="text" class="mdl-textfield__input" maxlength="255">
-                <label for="level" class="mdl-textfield__label">Level</label>
+                <input name="icon" type="text" class="mdl-textfield__input" maxlength="255">
+                <label for="icon" class="mdl-textfield__label">Icon</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield">
                 <textarea name="description" class="materialize-textarea" maxlength="255"></textarea>

@@ -1,15 +1,21 @@
+:root {
+    --primary-color: #141c3a;
+    --secondary-color: #0077B6;
+    --tertiary-color: #004ffc;
+}
+
 .primary {
-    background-color: #141c3a !important;
+    background-color: var(--primary-color) !important;
 }
 
 .primary-text {
-    color: #141c3a !important;
+    color: var(--primary-color) !important;
 }
 
 .secondary {
-    background-color: #0077B6 !important;
+    background-color: var(--secondary-color) !important;
 }
 
 .secondary-text {
-    color: #0077B6 !important;
+    color: var(--secondary-color) !important;
 }

@@ -8,12 +8,12 @@ from portfolio.models import Skill
 @app.route('/admin/skills/add', methods=['POST'])
 @login_required
 def add_skill():
-    success, data = get_fields(['name', 'level', 'description'], request.form)
+    success, data = get_fields(['name', 'icon', 'description'], request.form)
 
     if not success:
         flash(u"Missing fields: [" + data + "]", 'error')
         return redirect(url_for('show_backoffice'))
-    skill = Skill(data['name'], data['level'], data['description'])
+    skill = Skill(data['name'], data['icon'], data['description'])
     db.session.add(skill)
     current_user.add_skill(skill)
     db.session.commit()
@@ -45,12 +45,12 @@ def update_skill(id):
     if not skill:
         flash(u"Can't find this skill.", 'error')
         return redirect(url_for('show_backoffice'))
-    success, data = get_fields(['name', 'level', 'description'], request.form)
+    success, data = get_fields(['name', 'icon', 'description'], request.form)
     if not success:
         flash(u"Missing fields: [" + data + "]", 'error')
         return redirect(url_for('show_backoffice'))
     skill.name = data['name']
-    skill.level = data['level']
+    skill.icon = data['icon']
     skill.description = data['description']
     db.session.commit()
     app.logger.info('Skill #' + id + ' updated.')

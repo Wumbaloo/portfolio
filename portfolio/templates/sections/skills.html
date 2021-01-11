@@ -1,0 +1,17 @@
+<section class="skills-section">
+    <div class="centered-div" style="padding-bottom: 0;">
+        <h4 style="font-weight: bolder;">En quoi puis-je vous être utile ?</h4>
+        <h5>Je maîtrise :</h5>
+        <div class="skills">
+            {% for skill in user.skills %}
+                <div class="skill-box">
+                    <div class="skill-img">
+                        <img src="/static/assets/skills/{{ skill.icon }}" alt="{{ skill.icon }}" />
+                    </div>
+                    <h5 style="font-weight: 600;">{{ skill.name }}</h5>
+                    <p>{{ skill.description }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

@@ -7,16 +7,16 @@
                 <div class="mdl-card__title">
                     <h2 class="mdl-card__title-text">Mes expériences</h2>
                 </div>
-                <ul class="timeline">
-                    {% for experience in user.experiences %}
-                    <li class="event" data-date="{{ experience.begin }}/{{ experience.end }}">
-                        <h3>{{ experience.name }}</h3>
-                        <h3>{{ experience.company }}</h3>
-                        <p>{{ experience.description }}</p>
-                    </li>
-                    {% endfor %}
-                </ul>
             </div>
         </div>
+        <ul class="centered-div timeline">
+            {% for experience in user.experiences %}
+            <li class="event" data-date="{{ experience.begin }} - {{ experience.end }}">
+                <h4 style="margin-bottom: 0; font-weight: 600;">{{ experience.name }}</h4>
+                <h5 style="margin-top: 8px;">{{ experience.company }}</h5>
+                <p>{{ experience.description }}</p>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
 </section>

@@ -1,22 +1,24 @@
-<section class="myself-section">
+<section class="myself-section" id="me">
     <div class="about-me section">
-        <h4 style="font-weight: bolder;">Ravi de vous voir &#128513</h4>
-        <h6>{{ user.description|safe }}</h6>
-        <div class="experiences centered-div">
-            <div class="mdl-shadow--2dp experiences-wrapper">
-                <div class="mdl-card__title">
-                    <h2 class="mdl-card__title-text">Mes expériences</h2>
+        <div class="centered-div" style="padding: 0">
+            <h4 style="font-weight: bolder;">Ravi de vous voir &#128513</h4>
+            <h6 style="white-space: break-spaces;">{{ user.description|safe }}</h6>
+            <div class="experiences centered-div">
+                <div class="mdl-shadow--2dp experiences-wrapper">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Mes expériences</h2>
+                    </div>
                 </div>
             </div>
+            <ul class="centered-div timeline">
+                {% for experience in user.experiences %}
+                <li class="event" data-date="{{ experience.begin }} - {{ experience.end }}">
+                    <h4 style="margin-bottom: 0; font-weight: 600; color: var(--tertiary-color)">{{ experience.name }}</h4>
+                    <h5 style="margin-top: 8px;">{{ experience.company }}</h5>
+                    <p>{{ experience.description }}</p>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
-        <ul class="centered-div timeline">
-            {% for experience in user.experiences %}
-            <li class="event" data-date="{{ experience.begin }} - {{ experience.end }}">
-                <h4 style="margin-bottom: 0; font-weight: 600;">{{ experience.name }}</h4>
-                <h5 style="margin-top: 8px;">{{ experience.company }}</h5>
-                <p>{{ experience.description }}</p>
-            </li>
-            {% endfor %}
-        </ul>
     </div>
 </section>

@@ -1,15 +1,13 @@
-@font-face {
-    font-family: "Roboto";
-    src: url("/static/assets/Roboto-Light.ttf");
-}
-
-.font-primary {
-    /* font-family: "Roboto" !important; */
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    /* font-family: "Roboto" !important; */
     font-size: 14px;
+}
+
+p {
+    white-space: break-spaces;
 }
 
 .hidden { display: none; }
@@ -81,7 +79,7 @@ label {
     position: fixed; /* Sit on top of the screen */
     z-index: 5; /* Add a z-index if needed */
     left: 50%; /* Center the snackbar */
-    bottom: 30px; /* 30px from the bottom */
+    top: 30px; /* 30px from the bottom */
 }
 
 /* Show the snackbar when clicking on a button (class added with JavaScript) */
@@ -95,23 +93,23 @@ label {
 
 /* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 30px; opacity: 1;}
+    from {top: 0; opacity: 0;}
+    to {top: 30px; opacity: 1;}
 }
 
 @keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 30px; opacity: 1;}
+    from {top: 0; opacity: 0;}
+    to {top: 30px; opacity: 1;}
 }
 
 @-webkit-keyframes fadeout {
-    from {bottom: 30px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
+    from {top: 30px; opacity: 1;}
+    to {top: 0; opacity: 0;}
 }
 
 @keyframes fadeout {
-    from {bottom: 30px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
+    from {top: 30px; opacity: 1;}
+    to {top: 0; opacity: 0;}
 }
 
 .nav-wrapper, .nav-wrapper .mdl-navigation__link {
@@ -162,7 +160,7 @@ section, .section {
     text-align: center;
 }
 
-.myself-section, .skills-section {
+.myself-section, .skills-section, .contact-section {
     color: white;
 }
 
@@ -172,7 +170,7 @@ section, .section {
     height: 100%;
     width: 100%;
     text-align: center;
-    background: linear-gradient(#7510F7 0%, #7510F7 22rem, white 22rem, white 100%);
+    background: linear-gradient(#7510F7 0%, #7510F7 34rem, white 34rem, white 100%);
 }
 
 .myself-section .experiences-wrapper {
@@ -184,7 +182,7 @@ section, .section {
     padding-bottom: 30px;
 }
 
-.skills-section {
+.skills-section, .contact-section {
     background: #7510F7;
     padding-top: 5rem;
     padding-bottom: 5rem;
@@ -204,7 +202,7 @@ section, .section {
     justify-content: center;
     align-items: center;
     padding: 25px 50px;
-    max-width: 50vw;
+    max-width: 25vw;
 }
 
 @media only screen and (max-width: 768px) {
@@ -227,4 +225,51 @@ section, .section {
     width: 70%;
     height: 70%;
     object-fit: contain;
+}
+
+.projects {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.project-card {
+    margin-left: 5rem;
+    margin-right: 5rem;
+    width: 25%;
+}
+
+@media only screen and (max-width: 768px) {
+    .project-card {
+        width: 100%;
+    }
+}
+
+.contact-section {
+    height: 50vh;
+}
+
+.contact-section .contact-mail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 15px;
+    color: white;
+}
+
+.contact-section .contact-mail .mail {
+    margin: 0;
+    margin-left: 10px;
+}
+
+.contact-section .contact-mail .mail:hover {
+    font-weight: bold;
+}
+
+.bottom-buttons-backoffice {
+    position: fixed;
+    bottom: 25px;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 25px;
 }

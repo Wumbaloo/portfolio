@@ -19,5 +19,4 @@ $ docsify serve docs
 We used the **master** branch and not the **main** branch.
 
 ## Credits
-Antony DERACHE
 William GAUDFRIN

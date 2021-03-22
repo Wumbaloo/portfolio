@@ -1,22 +1,12 @@
-# Dashboard
+# Portfolio
 
-The purpose of this project is to familiarize you with the software platform you
-have chosen (Java, .NET, node.js) through the creation of a dashboard.
-
-To do this, you need to implement a web application that works like [Netvibes](https://www.netvibes.com/en).
+The purpose of this project is to make me a new portfolio with Docker, an ORM and editable directly online (because it's lazy to build the project and upload it through FTP, all users like to have a backoffice)
 
 This project must use Docker (with a docker-compose)
 
-## Documentation
-To see the complete documentation *(and to view how to launch this project)*, simply run:
-
 ```sh
-$ npm i docsify-cli -g
-$ docsify serve docs
+$ docker-compose up --build
 ```
-
-## Git
-We used the **master** branch and not the **main** branch.
 
 ## Credits
 William GAUDFRIN
